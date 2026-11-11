@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hilaire Trader - Fòmasyon Trading Options Binaires | ZLM Mission</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #151a23;
+            --card-hover: #1c2331;
+            --accent-green: #00e676;
+            --accent-red: #ff5252;
+            --accent-blue: #29b6f6;
+            --accent-gold: #ffd700;
+            --text-main: #ffffff;
+            --text-muted: #9ea9b8;
+            --border: #232d3f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Ticker Tape */
+        .ticker-wrap {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 8px 0;
+        }
+
+        .ticker {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 20px;
+            font-size: 0.85rem;
+        }
+
+        .up { color: var(--accent-green); }
+        .down { color: var(--accent-red); }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* Header / Nav */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background: rgba(11, 14, 20, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: var(--accent-green); }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--accent-green); }
+
+        .btn-cta {
+            background: linear-gradient(45deg, var(--accent-green), #00b0ff);
+            color: #000;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 230, 118, 0.7);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 8% 60px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 230, 118, 0.1) 0%, rgba(11, 14, 20, 1) 70%);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 230, 118, 0.15);
+            color: var(--accent-green);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border: 1px solid var(--accent-green);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(45deg, var(--accent-green), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 8%;
+            background: var(--card-bg);
+            border-y: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 2.2rem;
+            color: var(--accent-green);
+        }
+
+        .stat-item p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Sections General */
+        section { padding: 80px 8%; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+        }
+
+        /* Program Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 12px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .card:hover {
+            background: var(--card-hover);
+            transform: translateY(-5px);
+            border-color: var(--accent-green);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card ul {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .card ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .card ul li::before {
+            content: "✓";
+            color: var(--accent-green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Platforms & Tools */
+        .platforms-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .platform-badge {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Payment Section */
+        .payment-box {
+            background: linear-gradient(135deg, #151a23 0%, #1c2536 100%);
+            border: 2px solid var(--accent-green);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .pay-card {
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* Footer */
+        footer {
+            background: #06080b;
+            padding: 50px 8% 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-green);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-col a:hover { color: var(--text-main); }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.1rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ticker Tape -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker-item">EUR/USD: <span class="up">1.0854 ▲ +0.45%</span></div>
+            <div class="ticker-item">GBP/USD: <span class="down">1.2640 ▼ -0.12%</span></div>
+            <div class="ticker-item">USD/JPY: <span class="up">155.20 ▲ +0.30%</span></div>
+            <div class="ticker-item">AUD/USD: <span class="up">0.6612 ▲ +0.18%</span></div>
+            <div class="ticker-item">BTC/USD: <span class="up">$64,250 ▲ +2.80%</span></div>
+            <div class="ticker-item">ZLM STRATEGY: <span class="up">WIN RATE 88%</span></div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">Hilaire <span>Trader</span></div>
+        <nav>
+            <ul>
+                <li><a href="#about">Konsènan</a></li>
+                <li><a href="#program">Fòmasyon ZLM</a></li>
+                <li><a href="#platforms">Platfòm</a></li>
+                <li><a href="#payment">Paiement</a></li>
+                <li><a href="#contact">Konta</a></li>
+            </ul>
+        </nav>
+        <a href="https://wa.me/18293264151?text=Bonjou%20Hilaire%20Trader,%20mwen%20vle%20inskri%20nan%20f%C3%B2masyon%20ZLM%20an!" class="btn-cta" target="_blank">Inskri Kounye a</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="badge">🚀 PROGRANM FÒMASYON EXCLUSIF 2026</div>
+        <h1>Master Trading <span>Options Binaires</span> Ak Strategi ZLM</h1>
+        <p>Zero Loss Mission (ZLM) — Aprann kijan pou jere risk ou, li chāts yo ak presizyon, epi fè profi regilye sou mache finansye yo ak Formatrice HILAIRE Sonise.</p>
+        <div class="hero-buttons">
+            <a href="https://wa.me/18293264151?text=Mwen%20vle%20plis%20enfòmasyon%20sou%20fòmasyon%20ZLM" class="btn-cta" target="_blank"><i class="fab fa-whatsapp"></i> Rejoindre sou WhatsApp</a>
+            <a href="#program" class="btn-cta" style="background: transparent; border: 2px solid var(--border); color: white;">Wè Pwogram Lan</a>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats">
+        <div class="stat-item">
+            <h2>88%+</h2>
+            <p>Taux de Reussite (Win Rate)</p>
+        </div>
+        <div class="stat-item">
+            <h2>ZLM</h2>
+            <p>Zero Loss Strategy</p>
+        </div>
+        <div class="stat-item">
+            <h2>100%</h2>
+            <p>Akonpayman An Statik & Live</p>
+        </div>
+        <div class="stat-item">
+            <h2>24/7</h2>
+            <p>Sipò ak Kominote</p>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">
+            <h2>Kiyès ki <span>HILAIRE Sonise</span>?</h2>
+            <p>Formatrice Pwofesyonèl nan Trading Options Binaires</p>
+        </div>
+        <div style="max-width: 850px; margin: 0 auto; text-align: center; color: var(--text-muted); font-size: 1.05rem;">
+            <p>Avèk anpil ane eksperyans nan mache finansye yo, **HILAIRE Sonise (Hilaire Trader)** kreye pwogram **ZLM (Zero Loss Mission)** pou ede ni moun ki debutan ni moun ki gen eksperyans deja konprann mouvman pri yo (Price Action), kontwole emosyon yo, epi kontwole risk nan trading options binaires. Baz nou sitiye nan **Punta Cana, Bavaro**, men nou fòme moun nan tout mond lan sou entènèt.</p>
+        </div>
+    </section>
+
+    <!-- Program Curriculum (ZLM) -->
+    <section id="program" style="background: rgba(21, 26, 35, 0.5);">
+        <div class="section-title">
+            <h2>Kontni <span>Fòmasyon ZLM</span></h2>
+            <p>Tout sa w ap aprann nan pwogram konplè sa a</p>
+        </div>
+
+        <div class="grid-3">
+            <!-- Module 1 -->
+            <div class="card">
+                <i class="fas fa-chart-line"></i>
+                <h3>1. Fondasyon & Baz Mache</h3>
+                <ul>
+                    <li>Kisa ki Options Binaires (Call / Put)</li>
+                    <li>Fonksyonman Broker yo & Tan Ekspirasyon</li>
+                    <li>Konfigirasyon Graphique & Bouji Japonèz</li>
+                    <li>Sipò ak Rezistans (Support & Resistance)</li>
+                </ul>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="card">
+                <i class="fas fa-brain"></i>
+                <h3>2. Analiz Teknik & Endikatè</h3>
+                <ul>
+                    <li>Analyse de Tendance (Trendlines & Channels)</li>
+                    <li>Pattern Bouji yo (Engulfing, Pinbar, Doji)</li>
+                    <li>Itilizasyon RSI, Bollinger Bands & Moving Averages</li>
+                    <li>Kijan pou evite "Faux Cassures" (Fakeouts)</li>
+                </ul>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>3. Strategi Sekrè ZLM</h3>
+                <ul>
+                    <li>Strateji ZLM ak yon Win Rate ki wo</li>
+                    <li>Analiz Pri nan Minit yo (1 Min - 5 Min Trading)</li>
+                    <li>Antre ak Presizyon (Sniper Entry Points)</li>
+                    <li>Kalkil Proba & Konfimasyon Mache</li>
+                </ul>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="card">
+                <i class="fas fa-calculator"></i>
+                <h3>4. Money Management (Jèsyon Kaptal)</h3>
+                <ul>
+                    <li>Kijan pou w pa nåde (Blow) kont ou</li>
+                    <li>Plan Trading ZLM pou Chak Jou</li>
+                    <li>Jesyon Risk: Matris Gany / Pèdi</li>
+                    <li>Objektif compounding sou kapital ou</li>
+                </ul>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="card">
+                <i class="fas fa-heartbeat"></i>
+                <h3>5. Psychologie du Trader</h3>
+                <ul>
+                    <li>Kontwole FOMO (Fè pè pèdi okazyon)</li>
+                    <li>Elimine Lafrèk & Egosantris nan Trading</li>
+                    <li>Disiplin sou plan an san Chanje strateji</li>
+                    <li>Kijan pou reponn apre yon session pèt</li>
+                </ul>
+            </div>
+
+            <!-- Module 6 -->
+            <div class="card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>6. Live Trading & Pratik</h3>
+                <ul>
+                    <li>Session Live ak HILAIRE Sonise</li>
+                    <li>Analiz Mache an Direktè</li>
+                    <li>Analiz Chāts sou Signal ak Kèstyon</li>
+                    <li>Akonpayman Pèsonalize jouk ou fèt profi</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Platforms -->
+    <section id="platforms">
+        <div class="section-title">
+            <h2>Platfòm Nou <span>Itilize</span></h2>
+            <p>Fòmasyon sa a adapte pou tout gwo Broker Options Binaires yo</p>
+        </div>
+        <div class="platforms-container">
+            <div class="platform-badge"><i class="fas fa-chart-pie" style="color: #00e676;"></i> Quotex</div>
+            <div class="platform-badge"><i class="fas fa-bolt" style="color: #29b6f6;"></i> Pocket Option</div>
+            <div class="platform-badge"><i class="fas fa-globe" style="color: #ffd700;"></i> IQ Option</div>
+            <div class="platform-badge"><i class="fas fa-cubes" style="color: #ff5252;"></i> Deriv / Binary</div>
+        </div>
+    </section>
+
+    <!-- Payment Methods Section -->
+    <section id="payment">
+        <div class="payment-box">
+            <h2 style="font-size: 2rem; margin-bottom: 10px;">Modes de Paiement Disponibles</h2>
+            <p style="color: var(--text-muted);">Nou aksepte divès fòm pèman pou fasilite aksè w nan fòmasyon ZLM an.</p>
+            
+            <div class="payment-methods">
+                <div class="pay-card"><i class="fab fa-bitcoin" style="color: #f7931a;"></i> Binance (Crypto)</div>
+                <div class="pay-card"><i class="fas fa-wallet" style="color: #29b6f6;"></i> Meru Pay</div>
+                <div class="pay-card"><i class="fas fa-mobile-alt" style="color: #ff5252;"></i> Natcash</div>
+                <div class="pay-card"><i class="fas fa-money-bill-wave" style="color: #00e676;"></i> MonCash</div>
+            </div>
+
+            <p style="margin-top: 25px; font-size: 0.9rem; color: var(--text-muted);">
+                <i>* Pou w konnen pri a ak opsyon pèman yo, kontakte nou dirèkteman sou WhatsApp.</i>
+            </p>
+            <a href="https://wa.me/18293264151?text=Bonjou,%20mwen%20ta%20renmen%20konnen%20pri%20ak%20mwayen%20p%C3%A8man%20pou%20f%C3%B2masyon%20ZLM" class="btn-cta" style="margin-top: 20px; display: inline-block;">Mande Enfòmasyon sou WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+        <div class="section-title">
+            <h2>Temwayaj <span>Etiyan Nou Yo</span></h2>
+            <p>Wè sa lòt moun ap di sou akonpayman Hilaire Trader ak strateji ZLM</p>
+        </div>
+        <div class="grid-3">
+            <div class="testimonial-card">
+                <p>"Mèsi anpil ak Sonise! Mwen te blow anpil kont Pocket Option anvan m te rankontre ZLM. Strategi Money Management li a chanje tout bagay pou mwen."</p>
+                <div class="client-info">
+                    <div class="avatar">JM</div>
+                    <div>
+                        <strong>Jean-Marc L.</strong>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Etidyan ZLM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Fòmasyon sa a trè senp epi klè. Li pa konplike tankou lòt fòmasyon sou entènèt. Mwen rekòmande Hilaire Trader 100%!"</p>
+                <div class="client-info">
+                    <div class="avatar">SD</div>
+                    <div>
+                        <strong>Sarah D.</strong>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Etidyan ZLM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Live Session yo vrèman ede m konprann ki lè pou m rantre sou mache a. Mwen kòmanse wè profi regilye sou kont mwen kounye a."</p>
+                <div class="client-info">
+                    <div class="avatar">RL</div>
+                    <div>
+                        <strong>Roody L.</strong>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Etidyan ZLM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer Section -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Hilaire Trader</h4>
+                <p>Spesyalize nan fòmasyon ak akonpayman sou Trading Options Binaires ak Strateji Exclusif ZLM (Zero Loss Mission).</p>
+            </div>
+            <div class="footer-col">
+                <h4>Konta Otantik</h4>
+                <p><i class="fab fa-whatsapp"></i> +1 (829) 326-4151</p>
+                <p><i class="fas fa-envelope"></i> Hsonise91@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Punta Cana, Bavaro</p>
+            </div>
+            <div class="footer-col">
+                <h4>Mwayen Pèman</h4>
+                <p>• Binance (USDT/Crypto)</p>
+                <p>• Meru</p>
+                <p>• Natcash</p>
+                <p>• MonCash</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Hilaire Trader - ZLM (Zero Loss Mission). Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/18293264151?text=Bonjou%20Hilaire%20Trader,%20mwen%20entèrese%20nan%20fòmasyon%20ZLM%20an!" class="whatsapp-float" target="_blank" title="Konta sou WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
